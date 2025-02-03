@@ -1,2 +1,7 @@
-<app-header />
-<app-log-in />
+<app-header (createAccountEvent)="onCreateAccount()" />
+@if (isLogInVisible == true) {
+    <app-log-in />
+} @else if (isCreateAccountVisible == true) {
+    <app-create-account />
+}
+<app-footer />

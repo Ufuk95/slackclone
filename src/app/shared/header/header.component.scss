@@ -11,5 +11,20 @@ header {
         flex-direction: column;
         align-items: center;
         gap: 10px;
+
+        button {
+            color: rgba(121, 126, 243, 1);
+            background-color: transparent;
+            border-radius: 30px;
+            padding: 10px 15px;
+            border: 1px solid transparent;
+            font-size: 18px;
+            cursor: pointer;
+
+            &:hover {
+                border: 1px solid grey;
+                color: rgb(61, 66, 239);
+            }
+        }
     }
 }
