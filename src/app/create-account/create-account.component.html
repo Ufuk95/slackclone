@@ -1,0 +1,42 @@
+<app-header-logo />
+
+
+<div class="fullBodyCreateAccount">
+    <main>
+        <img src="/img/landingPage/2.kontoErstellen/arrow_back.svg" routerLink="/" alt="arrow_back">
+        <div class="headline">
+            <h1>Konto erstellen</h1>
+            <span>Mit deinem Namen und deiner E-Mail-Adresse hast du dein neues DABubble-Konto.</span>
+        </div>
+    
+        <form action="" (submit)="onSubmit()">
+
+            <div class="inputArea">
+                <input type="text" name="" id="" placeholder="Name und Nachname">
+                <img src="/img/landingPage/2.kontoErstellen/person.svg" alt="person">
+            </div>
+            
+            <div class="inputArea">
+                <input type="email" name="" id="" placeholder="beispielname@email.de">
+                <img src="/img/landingPage/2.kontoErstellen/mail.svg" alt="mail">
+            </div>
+            
+            <div class="inputArea">
+                <input type="password" name="" id="" placeholder="Passwort">
+                <img src="/img/landingPage/2.kontoErstellen/lock.svg" alt="mail">
+            </div>
+            
+
+            <div class="privacyPolicy">
+                <img src="/img/landingPage/2.kontoErstellen/empty_checkbox.svg" alt="checkbox">
+                <span>Ich stimme der <a href="#">Datenschutzerklärung</a> zu</span>
+            </div>
+
+            <button>Weiter</button>
+        </form>
+
+    </main>
+</div>
+
+
+<app-footer />
