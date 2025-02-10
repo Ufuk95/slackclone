@@ -3,11 +3,13 @@ import { FooterComponent } from "../shared/footer/footer.component";
 import { HeaderLogoComponent } from "../shared/header-logo/header-logo.component";
 import { RouterModule } from '@angular/router';
 import { ChooseAvatarComponent } from "./choose-avatar/choose-avatar.component";
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-create-account',
   standalone: true,
-  imports: [FooterComponent, HeaderLogoComponent, RouterModule, ChooseAvatarComponent],
+  imports: [FooterComponent, HeaderLogoComponent, RouterModule, ChooseAvatarComponent, FormsModule, CommonModule],
   templateUrl: './create-account.component.html',
   styleUrl: './create-account.component.scss'
 })
@@ -16,11 +18,26 @@ export class CreateAccountComponent {
   isCheckboxHovered: boolean = false;
   isCheckboxChecked: boolean = false;
   isArrowbackHovered: boolean = false;
+
   isLoginDataRight: boolean = false;
   isCreateAccountNotFinished: boolean = true;
 
-  onSubmit() {
+  name: string = '';
+  email: string = '';
+  password: string = '';
+  acceptedTerms: boolean = false;
+  submitted = false;
 
+  onSubmit() {
+    if (this.name && this.email && this.password && this.acceptedTerms) {
+      console.log('Anmeldeformular gesendet:', {
+        name: this.name,
+        email: this.email,
+        password: this.password
+      });
+    } else {
+      console.log('Bitte alle Felder korrekt ausfüllen.');
+    }
   }
 
   get CheckboxImage(): string {
@@ -46,4 +63,22 @@ export class CreateAccountComponent {
       return '/img/landingPage/2.kontoErstellen/arrow_back.svg'
     }
   }
+
+  showAvatar(form: any, event: Event) {
+    event.preventDefault(); // Verhindert das Standardverhalten des Buttons
+    
+    this.submitted = true; // ⚠️ WICHTIG: Setzt `submitted` sofort!
+  
+    if (form.invalid) {
+      console.log("Fehler: Formular nicht korrekt ausgefüllt!");
+      return; // Stoppt die Funktion, wenn das Formular ungültig ist
+    }
+  
+    console.log("Formulardaten:", form.value);
+  
+    // Wechsle zur Avatar-Auswahl
+    this.isCreateAccountNotFinished = false;
+    this.isLoginDataRight = true;
+  }
+  
 }

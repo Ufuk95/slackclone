@@ -1,48 +1,67 @@
 <app-header-logo />
 
 @if (isCreateAccountNotFinished) {
-    <div class="fullBodyCreateAccount">
-        <main>
-            <div class="imageContainer">
-                <img [src]="hoverArrowbackSrc" (mouseenter)="isArrowbackHovered = true"
-                    (mouseleave)="isArrowbackHovered = false" routerLink="/" alt="arrow_back">
-            </div>
-    
-            <div class="headline">
-                <h1>Konto erstellen</h1>
-                <span>Mit deinem Namen und deiner E-Mail-Adresse hast du dein neues DABubble-Konto.</span>
-            </div>
-    
-            <div class="formValidation">
-    
-                <div class="inputArea">
-                    <input type="text" name="name" id="" placeholder="Name und Nachname" required >
-                    <img src="/img/landingPage/2.kontoErstellen/person.svg" alt="person">
-                </div>
-    
-                <div class="inputArea">
-                    <input type="email" name="" id="" placeholder="beispielname@email.de"
-                        pattern="[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}" required>
-                    <img src="/img/landingPage/2.kontoErstellen/mail.svg" alt="mail">
-                </div>
-    
-                <div class="inputArea">
-                    <input type="password" name="" id="" placeholder="Passwort" required>
-                    <img src="/img/landingPage/2.kontoErstellen/lock.svg" alt="mail">
-                </div>
-    
-                <div class="privacyPolicy">
-                    <img [src]="CheckboxImage" (click)="toggleCheckbox()" (mouseenter)="isCheckboxHovered = true"
-                        (mouseleave)="isCheckboxHovered = false" alt="checkbox">
-                    <span>Ich stimme der <a href="#">Datenschutzerklärung</a> zu</span>
-                </div>
-    
-                <div class="buttonContainer">
-                    <button disabled>Weiter</button>
+<div class="fullBodyCreateAccount">
+    <main>
+        <div class="imageContainer">
+            <img [src]="hoverArrowbackSrc" (mouseenter)="isArrowbackHovered = true"
+                (mouseleave)="isArrowbackHovered = false" routerLink="/" alt="arrow_back">
+        </div>
+
+        <div class="headline">
+            <h1>Konto erstellen</h1>
+            <span>Mit deinem Namen und deiner E-Mail-Adresse hast du dein neues DABubble-Konto.</span>
+        </div>
+
+        <form #signupForm="ngForm">
+            <div class="inputArea">
+                <input type="text" name="name" [(ngModel)]="name" placeholder="Name und Nachname" required
+                    #nameInput="ngModel">
+                <img src="/img/landingPage/2.kontoErstellen/person.svg" alt="person">
+                <div *ngIf="(nameInput.invalid && nameInput.touched) || (nameInput.invalid && submitted)" class="error">
+                    Name ist erforderlich
                 </div>
             </div>
-        </main>
-    </div>
+
+            <div class="inputArea">
+                <input type="email" name="email" [(ngModel)]="email" placeholder="beispielname@email.de"
+                    pattern="[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}" required #emailInput="ngModel">
+                <img src="/img/landingPage/2.kontoErstellen/mail.svg" alt="mail">
+                <div *ngIf="(emailInput.invalid && emailInput.touched) || (emailInput.invalid && submitted)"
+                    class="error">
+                    Ungültige E-Mail
+                </div>
+            </div>
+
+            <div class="inputArea">
+                <input type="password" name="password" [(ngModel)]="password" placeholder="Passwort" required
+                    #passwordInput="ngModel">
+                <img src="/img/landingPage/2.kontoErstellen/lock.svg" alt="lock">
+                <div *ngIf="(passwordInput.invalid && passwordInput.touched) || (passwordInput.invalid && submitted)"
+                    class="error">
+                    Passwort ist erforderlich
+                </div>
+            </div>
+
+            <div class="privacyPolicy">
+                <input type="checkbox" [(ngModel)]="acceptedTerms" name="terms" required #termsInput="ngModel">
+                <span>Ich stimme der <a href="#">Datenschutzerklärung</a> zu</span>
+                <div *ngIf="(termsInput.invalid && termsInput.touched) || (termsInput.invalid && submitted)"
+                    class="error">
+                    Bitte zustimmen
+                </div>
+            </div>
+
+            <div class="buttonContainer">
+                <button (click)="showAvatar(signupForm, $event)">
+                    Weiter
+                </button>
+            </div>
+        </form>
+
+
+    </main>
+</div>
 }
 
 

@@ -50,7 +50,7 @@
             }
         }
 
-        .formValidation {
+        form {
             display: flex;
             flex-direction: column;
             gap: 30px;
@@ -96,6 +96,14 @@
                     opacity: 0;
                     transform: translateX(-20px);
                 }
+
+
+                >div {
+                    position: absolute;
+                    top: 55px;
+                    left: 32px;
+                    color: red;
+                }
             }
 
             .privacyPolicy {
@@ -103,6 +111,7 @@
                 justify-content: flex-start;
                 align-items: center;
                 gap: 8px;
+                position: relative;
 
                 img {
                     cursor: pointer;
@@ -124,6 +133,13 @@
                         }
                     }
                 }
+
+                >div {
+                    position: absolute;
+                    top: 32px;
+                    left: 32px;
+                    color: red;
+                }
             }
 
             .buttonContainer {
@@ -138,6 +154,7 @@
                     width: 107px;
                     height: 49px;
                     border-radius: 25px;
+                    border: 1px solid transparent;
                     padding: 12px 25px;
                     color: white;
                     cursor: pointer;
@@ -147,7 +164,7 @@
                     }
                 }
             }
-            
+
         }
 
 
