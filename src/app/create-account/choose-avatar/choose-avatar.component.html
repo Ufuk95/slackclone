@@ -1,1 +1,33 @@
-<p>choose-avatar works!</p>
+<div class="fullBodyAvatarChoose">
+    <main>
+        <div class="imageContainer">
+            <img [src]="hoverArrowbackSrc" (mouseenter)="isArrowbackHovered = true"
+                (mouseleave)="isArrowbackHovered = false" alt="arrow_back">
+                <!-- hier kein routerlink da wir uns schon in diesem link befinden 
+                gegenteilige funktion von create-account beim button ganz unten -->
+        </div>
+
+        <div class="choosenAvatar">
+            <h1>Wähle deinen Avatar</h1>
+            <div>
+                <img src="/img/landingPage/1.avatare/profile.svg" alt="avatar">
+                <h2>{{ userName }}</h2>
+            </div>
+        </div>
+
+        <div class="avatarSection">
+            <p>Aus der Liste wählen</p>
+            <div>
+                <img *ngFor="let avatar of avatarImages" [src]="avatar" alt="Avatar">
+            </div>
+            
+        </div>
+
+
+        <div class="buttonContainer">
+            <button>
+                Weiter
+            </button>
+        </div>
+    </main>
+</div>

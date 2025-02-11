@@ -1,0 +1,94 @@
+.fullBodyAvatarChoose {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+
+
+    main {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        max-width: 606px;
+        max-height: 769px;
+        width: 100%;
+        background-color: white;
+        border-radius: 30px;
+        padding: 50px 60px;
+        overflow: hidden;
+        box-sizing: border-box;
+        position: relative;
+
+
+        .imageContainer {
+            width: 40px;
+            height: 40px;
+            position: absolute;
+            top: 60px;
+            left: 24px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            img {
+                cursor: pointer;
+            }
+        }
+
+        .choosenAvatar {
+
+            h1 {
+                color: rgba(68, 77, 242, 1);
+                margin-block-start: 0;
+                //margin-block-end: 0;
+                font-size: 46px;
+            }
+        }
+
+        .avatarSection {
+
+            p {
+                display: flex;
+            }
+
+            div {
+                display: flex;
+                gap: 3px;
+
+                img {
+                    padding: 2px;
+                    border-radius: 40px;
+                    cursor: pointer;
+                    &:hover {
+                        background-color: lightgrey;
+                    }
+                }
+            }
+        }
+
+
+        .buttonContainer {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            width: 100%;
+
+            button {
+                background-color: rgba(68, 77, 242, 1);
+                width: 107px;
+                height: 49px;
+                border-radius: 25px;
+                border: 1px solid transparent;
+                padding: 12px 25px;
+                color: white;
+                cursor: pointer;
+
+                &:hover {
+                    background-color: rgba(121, 126, 243, 1);
+                }
+            }
+        }
+    }
+}

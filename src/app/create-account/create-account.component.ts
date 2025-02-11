@@ -19,8 +19,10 @@ export class CreateAccountComponent {
   isCheckboxChecked: boolean = false;
   isArrowbackHovered: boolean = false;
 
-  isLoginDataRight: boolean = false;
-  isCreateAccountNotFinished: boolean = true;
+  // swenn ich mit choose-avatar fertig bin soll isLoginDataRight: boolean = false; und isCreateAccountNotFinished: boolean = true;
+
+  isLoginDataRight: boolean = true;
+  isCreateAccountNotFinished: boolean = false;
 
   name: string = '';
   email: string = '';
@@ -66,17 +68,14 @@ export class CreateAccountComponent {
 
   showAvatar(form: any, event: Event) {
     event.preventDefault(); // Verhindert das Standardverhalten des Buttons
-    
     this.submitted = true; // ⚠️ WICHTIG: Setzt `submitted` sofort!
   
     if (form.invalid) {
       console.log("Fehler: Formular nicht korrekt ausgefüllt!");
       return; // Stoppt die Funktion, wenn das Formular ungültig ist
     }
-  
+
     console.log("Formulardaten:", form.value);
-  
-    // Wechsle zur Avatar-Auswahl
     this.isCreateAccountNotFinished = false;
     this.isLoginDataRight = true;
   }
