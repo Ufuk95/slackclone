@@ -21,8 +21,8 @@ export class CreateAccountComponent {
 
   // swenn ich mit choose-avatar fertig bin soll isLoginDataRight: boolean = false; und isCreateAccountNotFinished: boolean = true;
 
-  isLoginDataRight: boolean = true;
-  isCreateAccountNotFinished: boolean = false;
+  isLoginDataRight: boolean = false;
+  isCreateAccountNotFinished: boolean = true;
 
   name: string = '';
   email: string = '';
@@ -79,5 +79,4 @@ export class CreateAccountComponent {
     this.isCreateAccountNotFinished = false;
     this.isLoginDataRight = true;
   }
-  
 }

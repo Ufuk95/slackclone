@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-choose-avatar',
@@ -13,8 +14,11 @@ export class ChooseAvatarComponent {
   isArrowbackHovered: boolean = false;
   selectedAvatar: string = '/img/landingPage/1.avatare/profile.svg'; // Standardavatar
 
-  @Input({required: true}) userName: string = '';
+  @Input({ required: true }) userName: string = '';
+  @Input({ required: true }) email: string = '';
+  @Input({ required: true }) password: string = '';
 
+  constructor(private authService: AuthService) {}
 
   get hoverArrowbackSrc(): string {
     if (this.isArrowbackHovered) {
@@ -30,5 +34,28 @@ export class ChooseAvatarComponent {
 
   selectAvatar(avatar: string): void {
     this.selectedAvatar = avatar; // Speichert das gewählte Avatar-Bild
+  }
+
+
+
+  async completeRegistration() {
+    if (!this.selectedAvatar) {
+      alert('Bitte wähle einen Avatar!');
+      return;
+    }
+
+    try {
+      const user = await this.authService.registerUser(
+        this.userName, 
+        this.email, 
+        this.password, 
+        this.selectedAvatar
+      );
+      alert('Registrierung erfolgreich!');
+      console.log('Erstellter Benutzer:', user);
+    } catch (error) {
+      alert('Fehler bei der Registrierung!');
+      console.error(error);
+    }
   }
 }
