@@ -11,7 +11,7 @@ import { RouterModule } from '@angular/router';
 })
 export class ChooseAvatarComponent {
   isArrowbackHovered: boolean = false;
-
+  selectedAvatar: string = '/img/landingPage/1.avatare/profile.svg'; // Standardavatar
 
   @Input({required: true}) userName: string = '';
 
@@ -26,5 +26,9 @@ export class ChooseAvatarComponent {
 
   get avatarImages(): string[] {
     return Array.from({ length: 6 }, (_, i) => `/img/landingPage/1.avatare/${i + 1}.Foto.svg`);
+  }
+
+  selectAvatar(avatar: string): void {
+    this.selectedAvatar = avatar; // Speichert das gewählte Avatar-Bild
   }
 }

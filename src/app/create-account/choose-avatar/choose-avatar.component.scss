@@ -45,6 +45,14 @@
                 //margin-block-end: 0;
                 font-size: 46px;
             }
+
+            div {
+
+                img {
+                    width: 168px;
+                    height: 168px;
+                }
+            }
         }
 
         .avatarSection {
@@ -74,6 +82,7 @@
             justify-content: flex-end;
             align-items: center;
             width: 100%;
+            margin-top: 30px;
 
             button {
                 background-color: rgba(68, 77, 242, 1);
