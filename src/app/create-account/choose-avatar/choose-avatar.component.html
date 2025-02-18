@@ -28,4 +28,10 @@
             <button (click)="completeRegistration()">Weiter</button>
         </div>
     </main>
+
+    @if (isRegistrationSuccessful) {
+        <div class="loginSucces">
+            <img src="/img/landingPage/2.kontoErstellen/succesfull.svg" alt="erfolgreich angemeldet">
+        </div>
+    } 
 </div>

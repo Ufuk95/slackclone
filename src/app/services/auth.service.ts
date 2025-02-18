@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Firestore, doc, setDoc } from '@angular/fire/firestore';
+import { Firestore, collection, addDoc } from '@angular/fire/firestore';
 
 @Injectable({
   providedIn: 'root'
@@ -9,13 +9,13 @@ export class AuthService {
 
   async registerUser(name: string, email: string, password: string, avatar: string) {
     try {
-      // 🔹 Speichert die Anmeldedaten direkt in Firestore
-      const userRef = doc(this.firestore, 'LogIn/vDqQdCYcO1BYnFqzIq1m'); 
-      await setDoc(userRef, { name, email, password, avatar });
+      // 🔹 Erstellt ein neues Dokument mit einer automatisch generierten ID in der LogIn-Collection
+      const userRef = collection(this.firestore, 'LogIn');
+      await addDoc(userRef, { name, email, password, avatar });
 
-      console.log('Daten erfolgreich gespeichert!');
+      console.log('Benutzer erfolgreich registriert!');
     } catch (error) {
-      console.error('Fehler beim Speichern:', error);
+      console.error('Fehler bei der Registrierung:', error);
       throw error;
     }
   }

@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
+import { Router } from '@angular/router'
 
 @Component({
   selector: 'app-choose-avatar',
@@ -13,12 +14,13 @@ import { AuthService } from '../../services/auth.service';
 export class ChooseAvatarComponent {
   isArrowbackHovered: boolean = false;
   selectedAvatar: string = '/img/landingPage/1.avatare/profile.svg'; // Standardavatar
+  isRegistrationSuccessful: boolean = false;
 
   @Input({ required: true }) userName: string = '';
   @Input({ required: true }) email: string = '';
   @Input({ required: true }) password: string = '';
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
   get hoverArrowbackSrc(): string {
     if (this.isArrowbackHovered) {
@@ -40,7 +42,7 @@ export class ChooseAvatarComponent {
 
   async completeRegistration() {
     if (!this.selectedAvatar) {
-      alert('Bitte wähle einen Avatar!');
+      console.log('Bitte wähle einen Avatar!');
       return;
     }
 
@@ -51,11 +53,14 @@ export class ChooseAvatarComponent {
         this.password, 
         this.selectedAvatar
       );
-      alert('Registrierung erfolgreich!');
-      console.log('Erstellter Benutzer:', user);
+      console.log('Registrierung erfolgreich!');
+      this.isRegistrationSuccessful = true; // erfolgreiche angemeldet img animation
+      //navigation zurück zu landingpage
+      setTimeout(() => {
+        this.router.navigate(['/']); // Navigation zur LandingPage
+      }, 2000); 
     } catch (error) {
-      alert('Fehler bei der Registrierung!');
-      console.error(error);
+      console.error('Fehler bei der Registrierung!');
     }
   }
 }
