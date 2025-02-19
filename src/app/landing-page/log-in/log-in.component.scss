@@ -76,12 +76,13 @@
             }
         }
 
-        a {
+        p {
             color: rgba(121, 126, 243, 1);
             text-decoration: none;
             padding: 5px 15px;
             font-size: 18px;
-
+            cursor: pointer;
+            
             &:hover {
                 color: rgb(68, 77, 242);
                 background-color: rgba(236, 238, 254, 1);
