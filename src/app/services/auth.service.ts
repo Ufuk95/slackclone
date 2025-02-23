@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
-import { Firestore, collection, addDoc } from '@angular/fire/firestore';
+import { Firestore, collection, addDoc, query, where, getDocs } from '@angular/fire/firestore';
+import { Auth, sendPasswordResetEmail } from '@angular/fire/auth';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  constructor(private firestore: Firestore) {}
+  constructor(private firestore: Firestore, private auth: Auth) {}
 
   async registerUser(name: string, email: string, password: string, avatar: string) {
     try {
@@ -19,4 +20,29 @@ export class AuthService {
       throw error;
     }
   }
+
+  async checkIfEmailExists(email: string): Promise<boolean> {
+    try {
+      const userRef = collection(this.firestore, 'LogIn');
+      const q = query(userRef, where('email', '==', email));
+      const querySnapshot = await getDocs(q);
+      return !querySnapshot.empty;
+    } catch (error) {
+      console.error('Fehler bei der E-Mail-Überprüfung:', error);
+      throw error;
+    }
+  }
+  
+  async sendPasswordReset(email: string): Promise<void> {
+    try {
+      await sendPasswordResetEmail(this.auth, email, {
+        url: 'http://localhost:4200/new-passwort' // 🔗 Zielseite nach Reset
+      });
+      console.log('Passwort-Reset-E-Mail gesendet!');
+    } catch (error) {
+      console.error('Fehler beim Senden der E-Mail:', error);
+      throw error;
+    }
+  }
+
 }
