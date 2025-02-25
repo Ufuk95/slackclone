@@ -4,6 +4,7 @@ import { appConfig } from './app/app.config'; // Deine bestehende App-Konfigurat
 import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
 import { provideAuth, getAuth } from '@angular/fire/auth';
 import { provideFirestore, getFirestore } from '@angular/fire/firestore';
+import { provideAnimations } from '@angular/platform-browser/animations'; // 👈 Animations-Provider importieren
 
 const firebaseConfig = {
   apiKey: "AIzaSyBM-5hGzEZ0GmZup3L4njYEmobEasyNJfA",
@@ -18,6 +19,7 @@ bootstrapApplication(AppComponent, {
   ...appConfig, // Behalte deine bestehende App-Konfiguration
   providers: [
     ...appConfig.providers, // Behalte vorhandene Provider aus appConfig
+    provideAnimations(), // ✨ Animations-Provider hinzufügen
     provideFirebaseApp(() => initializeApp(firebaseConfig)),
     provideAuth(() => getAuth()), // 🔥 Auth-Provider hinzufügen
     provideFirestore(() => getFirestore()) // 🟢 Firestore-Provider hinzufügen

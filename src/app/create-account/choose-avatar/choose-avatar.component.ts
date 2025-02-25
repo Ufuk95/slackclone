@@ -13,7 +13,7 @@ import { Router } from '@angular/router'
 })
 export class ChooseAvatarComponent {
   isArrowbackHovered: boolean = false;
-  selectedAvatar: string = '/img/landingPage/1.avatare/profile.svg'; // Standardavatar
+  selectedAvatar: string = '/img/landingPage/1.avatare/profile.svg';
   isRegistrationSuccessful: boolean = false;
 
   @Input({ required: true }) userName: string = '';
@@ -62,5 +62,9 @@ export class ChooseAvatarComponent {
     } catch (error) {
       console.error('Fehler bei der Registrierung!');
     }
+  }
+
+  goBack() {
+    // hier funktion für zurück
   }
 }

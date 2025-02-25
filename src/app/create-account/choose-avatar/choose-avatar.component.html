@@ -2,8 +2,8 @@
     <main>
         <div class="imageContainer">
             <img [src]="hoverArrowbackSrc" (mouseenter)="isArrowbackHovered = true"
-                (mouseleave)="isArrowbackHovered = false" alt="arrow_back">
-            <!-- hier kein routerlink da wir uns schon in diesem link befinden 
+                (mouseleave)="isArrowbackHovered = false" alt="arrow_back" (click)="goBack()">
+            <!-- hier kein routerlink da wir uns schon in diesem routerlink befinden 
                 gegenteilige funktion von create-account beim button ganz unten -->
         </div>
 

@@ -1,0 +1,24 @@
+.fullBodyIntro {
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(rgba(121, 126, 243, 1), rgba(49, 58, 229, 1));
+
+    main {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 12px;
+        height: 100%;
+
+        img {
+            width: 128px;
+        }
+
+        p {
+            color: white;
+            font-size: 82px;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+    }
+}
