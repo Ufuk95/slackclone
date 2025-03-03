@@ -74,6 +74,11 @@
                 opacity: 0;
                 transform: translateX(-20px);
             }
+
+            input:not(:placeholder-shown)+img {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
         }
 
         p {

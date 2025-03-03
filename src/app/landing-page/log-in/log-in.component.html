@@ -4,16 +4,16 @@
         <span>Wir empfehlen dir, die E-Mail-Adresse zu nutzen, die du bei der Arbeit verwendest.</span>
 
         <div class="inputArea">
-            <input type="email" placeholder="beispielname@email.com">
+            <input type="email" [(ngModel)]="email" placeholder="beispielname@email.com" aria-label="E-Mail-Adresse">
             <img src="/img/landingPage/mail.svg" alt="mail img">
         </div>
         <div class="inputArea">
-            <input type="password" placeholder="Passwort">
+            <input type="password" [(ngModel)]="password" placeholder="Passwort" autocomplete="current-password" aria-label="Passwort">
             <img src="/img/landingPage/lock.svg" alt="lock img">
         </div>
         
 
-        <p routerLink="/resetPassword">Passwort vergessen?</p>
+        <p [routerLink]="'/resetPassword'">Passwort vergessen?</p>
 
         <div class="lineWithO">
             <img src="/img/landingPage/line.svg" alt="line">
@@ -24,7 +24,7 @@
         <button><img src="/img/landingPage/Google.svg" alt="google logo"> Anmelden mit Google</button>
 
         <div class="buttonContainer">
-            <button class="signIn">Anmelden</button>
+            <button class="signIn" (click)="login()">Anmelden</button>
             <button class="guestLogin">Gäste-Login</button>
         </div>
     </main>

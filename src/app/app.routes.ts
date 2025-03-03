@@ -4,11 +4,13 @@ import { CreateAccountComponent } from './create-account/create-account.componen
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { NewPasswortComponent } from './new-passwort/new-passwort.component';
 import { IntroAnimationComponent } from './intro-animation/intro-animation.component';
+import { MainComponent } from './main/main.component';
 
 export const routes: Routes = [
-    {path: "", component: IntroAnimationComponent},
-    {path: "landingPage", component: LandingPageComponent},
-    {path: "createAccount", component: CreateAccountComponent},
-    {path: "resetPassword", component: ResetPasswordComponent},
-    {path: "newPasswort", component: NewPasswortComponent}
+    { path: "", component: IntroAnimationComponent },
+    { path: "landingPage", component: LandingPageComponent },
+    { path: "createAccount", component: CreateAccountComponent },
+    { path: "resetPassword", component: ResetPasswordComponent },
+    { path: "newPasswort", component: NewPasswortComponent },
+    { path: "main", component: MainComponent }
 ];

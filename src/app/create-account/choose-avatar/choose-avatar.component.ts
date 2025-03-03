@@ -42,27 +42,29 @@ export class ChooseAvatarComponent {
 
   async completeRegistration() {
     if (!this.selectedAvatar) {
-      console.log('Bitte wähle einen Avatar!');
-      return;
+        console.log('Bitte wähle einen Avatar!');
+        return;
     }
 
     try {
-      const user = await this.authService.registerUser(
-        this.userName, 
-        this.email, 
-        this.password, 
-        this.selectedAvatar
-      );
-      console.log('Registrierung erfolgreich!');
-      this.isRegistrationSuccessful = true; // erfolgreiche angemeldet img animation
-      //navigation zurück zu landingpage
-      setTimeout(() => {
-        this.router.navigate(['/']); // Navigation zur LandingPage
-      }, 2000); 
+        await this.authService.registerUser(
+            this.userName, 
+            this.email, 
+            this.password, 
+            this.selectedAvatar
+        );
+        console.log('Registrierung erfolgreich!');
+        this.isRegistrationSuccessful = true;
+
+        setTimeout(() => {
+            this.router.navigate(['/landingPage']);
+        }, 2000); 
+
     } catch (error) {
-      console.error('Fehler bei der Registrierung!');
+        console.error('Fehler bei der Registrierung!', error);
     }
-  }
+}
+
 
   goBack() {
     // hier funktion für zurück
