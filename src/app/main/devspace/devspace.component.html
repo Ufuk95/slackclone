@@ -1,0 +1,19 @@
+<mat-sidenav-container class="example-container">
+    <mat-sidenav #sidenav mode="side" opened class="example-sidenav" [fixedInViewport]="options.value.fixed"
+        [fixedTopGap]="options.value.top" [fixedBottomGap]="options.value.bottom">
+
+        <div class="devspaceBody">
+            <p>test</p>
+        </div>
+
+    </mat-sidenav>
+
+    
+
+
+</mat-sidenav-container>
+
+<div class="closeImg">
+    <img [src]="sidenavIcon" (click)="sidenav.toggle()" (mouseenter)="hover = true" (mouseleave)="hover = false"
+        class="workspace-icon" alt="Workspace Menü">
+</div>

@@ -61,9 +61,9 @@ import {
   validatePassword,
   verifyBeforeUpdateEmail,
   verifyPasswordResetCode
-} from "./chunk-RCQHVP6L.js";
-import "./chunk-EBF2YM3F.js";
-import "./chunk-FETLXITF.js";
+} from "./chunk-F2IDUZLJ.js";
+import "./chunk-552GSZQK.js";
+import "./chunk-ZS76Q7P6.js";
 export {
   Auth,
   AuthInstances,
