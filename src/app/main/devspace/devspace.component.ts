@@ -1,12 +1,18 @@
-import { AfterViewInit, ChangeDetectorRef, Component, inject, ViewChild } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, EventEmitter, inject, Output, ViewChild } from '@angular/core';
 import { MatSidenav, MatSidenavModule } from '@angular/material/sidenav';
 import { MatButtonModule } from '@angular/material/button';
 import { FormBuilder } from '@angular/forms';
+import { ALL_CHANNELS } from '../../shared/ALL_CHANNELS';
+import { ALL_USERS } from '../../shared/ALL_USERS';
+import { UserComponent } from './user/user.component';
+import { NewChannelComponent } from './new-channel/new-channel.component';
+import { ChannelComponent } from './channel/channel.component';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-devspace',
   standalone: true,
-  imports: [MatSidenavModule, MatButtonModule],
+  imports: [MatSidenavModule, MatButtonModule, UserComponent, NewChannelComponent, ChannelComponent, CommonModule],
   templateUrl: './devspace.component.html',
   styleUrl: './devspace.component.scss'
 })
@@ -18,11 +24,34 @@ export class DevspaceComponent implements AfterViewInit {
   @ViewChild('sidenav') sidenav!: MatSidenav;
   hover = false;
 
+  isMessageIconHovered: boolean = false;
+  isAddHovered: boolean = false
+  isChannelHovered: boolean = false;
+  isUserHovered: boolean = false;
+
+  @Output() newChannelClicked: EventEmitter<boolean> = new EventEmitter();
+  @Output() userSelected: EventEmitter<string> = new EventEmitter<string>();
+  @Output() channelSelected: EventEmitter<string> = new EventEmitter<string>();
+
+
+  isNewChannelClicked: boolean = false;
+  isUsersListVisible: boolean = true;
+  isChannelsListVisible: boolean = true;
+
+
+  channels = ALL_CHANNELS;
+  users = ALL_USERS;
+
+  selectedUserId = "u1";
+  selectedChannelName = "Entwicklerteam";
+
   options = this._formBuilder.group({
     bottom: 0,
     fixed: false,
     top: 0,
   });
+
+
 
   ngAfterViewInit() {
     this.cdr.detectChanges(); // Erzwingt eine Aktualisierung nach der Initialisierung
@@ -39,6 +68,54 @@ export class DevspaceComponent implements AfterViewInit {
         ? '/img/Devspace/workspace/workspace-nav-hover.svg'
         : '/img/Devspace/workspace/workspace-nav.svg';
     }
+  }
+
+
+  getUserImageSource(): string {
+    if (!this.isUsersListVisible && this.isUserHovered) {
+      return '/img/Devspace/arrow_drop_down_right_blue.svg'
+    } else if (!this.isUsersListVisible) {
+      return '/img/Devspace/arrow_drop_down_right.svg'
+    } else if (this.isUsersListVisible && this.isUserHovered) {
+      return '/img/Devspace/arrow_drop_down_blue.svg'
+    } else {
+      return '/img/Devspace/arrow_drop_down.svg';
+    }
+  }
+
+  getChannelImageSource() {
+    if (!this.isChannelsListVisible && this.isChannelHovered) {
+      return '/img/Devspace/arrow_drop_down_right_blue.svg'
+    } else if (!this.isChannelsListVisible) {
+      return '/img/Devspace/arrow_drop_down_right.svg'
+    } else if (this.isChannelsListVisible && this.isChannelHovered) {
+      return '/img/Devspace/arrow_drop_down_blue.svg'
+    } else {
+      return '/img/Devspace/arrow_drop_down.svg';
+    }
+  }
+
+  onSelectedUser(id: string) {
+    console.log('Ausgewählter Benutzer:', id);
+    this.userSelected.emit(id);
+  }
+
+  onSelectedChannel(name: string) {
+    this.selectedChannelName = name;
+    this.channelSelected.emit(name);
+  }
+
+  toggleUsersList() {
+    this.isUsersListVisible = !this.isUsersListVisible;
+  }
+
+  toggleChannelsList() {
+    this.isChannelsListVisible = !this.isChannelsListVisible;
+  }
+
+  onNewChannelClick() {
+    this.isNewChannelClicked = true;
+    this.newChannelClicked.emit(this.isNewChannelClicked);
   }
 
 }

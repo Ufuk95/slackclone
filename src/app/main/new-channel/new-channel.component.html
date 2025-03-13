@@ -1,0 +1,107 @@
+<div class="outsideChannel" (click)="closeChannel()"></div>
+<!-- first div container -->
+
+<div class="newChannelBody" *ngIf="!showSecondDiv">
+    <form #channelForm="ngForm" (ngSubmit)="newChannel(channelForm)" novalidate>
+        <div class="headline">
+            <h1>Channel erstellen</h1>
+            <img src="/img/NewChannel/close.svg" alt="close" class="closeImg"
+                [src]="isCloseHovered ? '/img/NewChannel/blue-close.svg' : '/img/NewChannel/close.svg'"
+                (mouseenter)="isCloseHovered = true" (mouseleave)="isCloseHovered = false" (click)="closeChannel()">
+        </div>
+
+        <span class="channelHeadline">Channels dienen deinem Team zur Kommunikation. Am besten sollten sie themenbezogen
+            sein #marketing zum Beispiel.</span>
+        <div class="channelName">
+            <span class="inputHeadline">Channel-Name</span>
+            <div class="channelInput">
+                <input type="text" placeholder="z.B Kooperationsprojekte" name="channelName" [(ngModel)]="channelName"
+                    required #channelNameInput="ngModel">
+                <div *ngIf="channelNameInput.invalid && (channelNameInput.touched || channelForm.submitted)">
+                    <span class="redText">Channel-Name ist erforderlich!</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="channelDescription">
+            <strong class="inputHeadline">Beschreibung</strong>
+            <input type="text" placeholder="Dein Text hier" name="description" [(ngModel)]="channelDescription" required
+                #descriptionInput="ngModel">
+            <div *ngIf="descriptionInput.invalid && (descriptionInput.touched || channelForm.submitted)">
+                <span class="redText">Beschreibung ist erforderlich!</span>
+            </div>
+        </div>
+
+        <div class="buttonDiv">
+            <button type="submit">Erstellen</button>
+        </div>
+    </form>
+
+
+
+</div>
+
+
+<!-- second div container -->
+
+<div class="secondDiv" *ngIf="showSecondDiv">
+    <div class="headline">
+        <span>Leute hinzufügen</span>
+        <img src="/img/NewChannel/close.svg" alt="close" class="closeImg"
+            [src]="isCloseHovered ? '/img/NewChannel/blue-close.svg' : '/img/NewChannel/close.svg'"
+            (mouseenter)="isCloseHovered = true" (mouseleave)="isCloseHovered = false" (click)="closeChannel()">
+    </div>
+
+
+    <div class="chooseImage">
+        <!-- Erstes Bild: Startet mit "blueSpace", wechselt zu "emptySpace" wenn das zweite Bild ausgewählt wird -->
+        <div class="activeArea" (click)="showImage('blueSpace')">
+            <img [src]="selectedImage === 'blueSpace' ? '/img/NewChannel/blueSpace.svg' : '/img/NewChannel/emptySpace.svg'"
+                alt="x">
+            <span class="font_s_18">Alle Mitglieder von <span class="font_s_18"
+                    [ngStyle]="{'color': dynamicColor}">OfficeTeam</span> hinzufügen</span>
+        </div>
+
+        <!-- Zweites Bild: Startet mit "emptySpace", wechselt zu "blueSpace" wenn es ausgewählt wird -->
+        <div class="activeArea" (click)="showImage('emptySpace')">
+            <img [src]="selectedImage === 'emptySpace' ? '/img/NewChannel/blueSpace.svg' : '/img/NewChannel/emptySpace.svg'"
+                alt="x">
+            <span class="font_s_18">Bestimmte Leute hinzufügen</span>
+        </div>
+
+
+
+
+        <!-- Bedingtes Input-Feld, wird nur angezeigt, wenn das zweite Bild zu "blueSpace" wechselt -->
+        @if (selectedImage === 'emptySpace') {
+        <!-- Eingabefeld für Benutzernamen -->
+        <input class="userNameInput" type="text" placeholder="Name der Person eingeben" [(ngModel)]="searchTerm"
+            (input)="filterUsers()" (click)="showUser()" />
+
+        <!-- Div für ausgewählte Namen mit Entfernen-Funktion -->
+        <div class="selectedUsers">
+            <div *ngFor="let userName of selectedUserNames; let i = index" class="selectedUserItem">
+                <span>{{ userName }}</span>
+                <img src="/img/NewChannel/close.svg" alt="remove" (click)="removeUser(i)" class="removeIcon">
+            </div>
+        </div>
+
+        <!-- Benutzerliste wird angezeigt, wenn showUserOnInputField auf true gesetzt ist -->
+        @if (showUserOnInputField && filteredUsers.length > 0) {
+        <div class="userNames">
+            @for (user of filteredUsers; track user.id) {
+            <app-user [avatar]="user.avatar" [name]="user.name" [id]="user.id" (select)="onSelectedUser(user.name)" />
+            }
+        </div>
+        }
+        }
+    </div>
+
+
+
+    <!-- Zweiter Button außerhalb des Formulars, um den Channel zu speichern und Dialog zu schließen -->
+    <div class="buttonDiv">
+        <button type="button" (click)="finalizeChannelCreation()">Erstellen</button>
+    </div>
+
+</div>

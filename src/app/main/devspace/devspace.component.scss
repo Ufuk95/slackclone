@@ -2,7 +2,7 @@
     position: absolute;
     top: 60px;
     bottom: 60px;
-    left: 20px;
+    left: 32px;
     right: 0;
     width: fit-content;
 }
@@ -12,10 +12,101 @@
     align-items: center;
     justify-content: center;
     width: 360px;
-    background: rgba(255, 0, 0, 0.5);
+    background: white;
     border-radius: 30px;
     border: 1px solid black;
     padding: 32px 30px;
+
+
+    .devspaceBody {
+
+
+
+        .headline {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            div {
+                display: flex;
+                justify-content: space-evenly;
+                align-items: center;
+                gap: 15px;
+
+                span {
+                    font-size: 24px;
+                    font-weight: 700;
+                }
+            }
+
+            img {
+                cursor: pointer;
+            }
+        }
+
+        .workspaces {
+            content: url('/img/Devspace/workspaces.svg');
+        }
+
+        .channels {
+            margin-top: 35px;
+
+            .channelsHeadline {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+
+                >div {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    gap: 25px;
+                    height: 40px;
+                    cursor: pointer;
+
+                    &:hover {
+                        color: rgba(83, 90, 241, 1);
+
+                        // .arrowDownBlack {
+                        //     content: url('/../img/Devspace/arrow_drop_down_blue.svg');
+                        // }
+
+                        .workspaces {
+                            content: url('/img/Devspace/workspaces_blue.svg');
+                        }
+
+                        .accountCircle {
+                            content: url('/img/Devspace/account_circle_blue.svg');
+                        }
+                    }
+
+                    >div {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        gap: 15px;
+                        font-size: 20px;
+                        font-weight: 700;
+                    }
+                }
+            }
+        }
+
+        .channelsInput {
+            padding-left: 25px;
+            max-width: 306px;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            padding-top: 15px;
+            padding-bottom: 15px;
+        }
+
+        ul {
+            margin-top: 25px;
+            padding-inline-start: 30px;
+        }
+    }
 }
 
 .closeImg {

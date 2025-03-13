@@ -1,1 +1,7 @@
-<app-devspace />
+<app-devspace (newChannelClicked)="handleNewChannelClicked($event)" (userSelected)="handleUserSelected($event)"
+    (channelSelected)="hanldeChannelSelected($event)" />
+
+
+@if (isNewChannelClicked) {
+<app-new-channel class="newChannel" (closeChannelEvent)="handleNewChannelClosed()" />
+}

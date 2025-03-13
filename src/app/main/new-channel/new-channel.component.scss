@@ -1,0 +1,330 @@
+.outsideChannel {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(111, 111, 111, 0.6);
+    z-index: 1;
+}
+
+
+.newChannelBody {
+    max-width: 872px;
+    width: 100%;
+    max-height: 539px;
+    border-radius: 30px;
+    padding: 40px;
+    background-color: white;
+    position: absolute;
+    z-index: 2;
+
+    .headline {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+
+        .closeImg {
+            cursor: pointer;
+        }
+    }
+
+    .channelHeadline {
+        font-size: 18px;
+        font-weight: 400;
+        font-family: Nunito;
+        color: rgba(0, 0, 0, 1);
+    }
+
+    .channelName {
+
+        padding-top: 30px;
+        padding-bottom: 30px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        width: 100%;
+
+        input {
+            height: 60px;
+            border-radius: 40px;
+            border: 1px solid rgba(173, 176, 217, 1);
+            padding-left: 30px;
+            box-sizing: border-box;
+            font-size: 18px;
+        }
+    }
+
+    .channelDescription {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        padding-bottom: 30px;
+        position: relative;
+
+        input {
+            height: 60px;
+            border-radius: 40px;
+            border: 1px solid rgba(173, 176, 217, 1);
+            padding-left: 15px;
+            box-sizing: border-box;
+            font-size: 18px;
+        }
+
+        div {
+            position: absolute;
+            top: 110px;
+
+            .redText {
+                color: red;
+                font-size: 14px;
+                font-weight: bold;
+            }
+        }
+    }
+
+    .inputHeadline {
+        font-size: 18px;
+        font-weight: 700;
+        font-family: Nunito;
+    }
+
+    .optional {
+        font-size: 18px;
+        font-weight: 400;
+        font-family: Nunito;
+        color: rgb(154, 154, 154);
+    }
+
+
+    .buttonDiv {
+        width: 100%;
+        display: flex;
+        justify-content: end;
+        align-items: center;
+
+        button {
+            width: 125px;
+            height: 49px;
+            border-radius: 25px;
+            border: none;
+            background-color: rgba(68, 77, 242, 1);
+            color: white;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: 700;
+
+            &:hover {
+                background-color: rgba(121, 126, 243, 1);
+            }
+        }
+    }
+}
+
+
+.channelInput {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+
+
+    span {
+        margin-right: 5px;
+        font-weight: bold;
+        font-size: 1.2rem;
+    }
+
+    input {
+        width: 100%;
+        padding-left: 40px;
+        /* Genügend Platz für den Hashtag */
+        padding-right: 10px;
+        box-sizing: border-box;
+        font-size: 1rem;
+        border: 1px solid #ccc;
+    }
+
+    input::placeholder {
+        color: #aaa;
+        font-size: 1rem;
+    }
+
+
+    input:focus::placeholder {
+        color: transparent;
+        /* Option: Platzhalter bei Fokus verschwinden lassen */
+    }
+
+    div {
+        position: absolute;
+        margin-top: 4px;
+
+        .redText {
+            color: red;
+            font-size: 14px;
+        }
+    }
+
+    
+}
+
+.channelInput::before {
+    content: "#";
+    position: absolute;
+    left: 10px;
+    /* Position des Hashtags innerhalb des Input-Feldes */
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1rem;
+    color: #7d7d7d;
+    font-size: 23px;
+    pointer-events: none;
+    /* Damit der Hashtag nicht auswählbar ist */
+}
+
+
+
+
+
+.secondDiv {
+    max-width: 710px;
+    width: 100%;
+    border-radius: 30px;
+    padding: 40px;
+    gap: 20px;
+    background-color: white;
+    position: absolute;
+    z-index: 1;
+    border: 1px solid red;
+
+    .font_s_18 {
+        font-size: 18px;
+    }
+
+    .headline {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+
+        span {
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        img {
+            cursor: pointer;
+        }
+    }
+
+    .chooseImage {
+        display: flex;
+        flex-direction: column;
+
+        .activeArea {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            gap: 20px;
+            padding-top: 20px;
+
+            img {
+                cursor: pointer;
+            }
+        }
+    }
+
+    .buttonDiv {
+        width: 100%;
+        display: flex;
+        justify-content: end;
+        align-items: center;
+
+        button {
+            width: 125px;
+            height: 49px;
+            border-radius: 25px;
+            border: none;
+            background-color: rgba(68, 77, 242, 1);
+            color: white;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: 700;
+
+            &:hover {
+                background-color: rgba(121, 126, 243, 1);
+            }
+        }
+    }
+}
+
+.userNameInput {
+    height: 55px;
+    width: 100%;
+    border-radius: 30px;
+    border: 1px solid rgba(173, 176, 217, 1);
+    margin-top: 30px;
+    margin-bottom: 15px;
+    font-size: 18px;
+    font-weight: 400;
+    padding-left: 20px;
+    padding-right: 20px;
+    box-sizing: border-box;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.userNames {
+    max-width: 335px;
+    width: 100%;
+    max-height: 171px;
+    border-radius: 0 20px 20px 20px;
+    background-color: white;
+    overflow: hidden;
+    overflow-x: auto;
+    border: 1px solid rgba(173, 176, 217, 1);
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 20px;
+    padding-top: 20px;
+    position: absolute;
+    top: 245px;
+    left: 65px;
+
+    img {
+        cursor: pointer;
+    }
+}
+
+
+
+
+// test
+
+
+.selectedUsers {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.selectedUserItem {
+    display: flex;
+    align-items: center;
+    background-color: rgba(236, 238, 254, 1);
+    padding: 5px 10px;
+    border-radius: 20px;
+
+    span {
+        font-family: Nunito;
+        font-size: 18px;
+        font-weight: 400;
+
+    }
+}
+
+.removeIcon {
+    cursor: pointer;
+    margin-left: 8px;
+}
