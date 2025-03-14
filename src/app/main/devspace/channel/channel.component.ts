@@ -9,7 +9,6 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 })
 export class ChannelComponent {
 
-  // @Input({ required: true }) id!: string;
   @Input({ required: true }) name!: string;
   @Output() selectChannel = new EventEmitter();
 

@@ -1,4 +1,4 @@
-import { AfterViewInit, ChangeDetectorRef, Component, EventEmitter, inject, Output, ViewChild } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, EventEmitter, inject, OnInit, Output, ViewChild } from '@angular/core';
 import { MatSidenav, MatSidenavModule } from '@angular/material/sidenav';
 import { MatButtonModule } from '@angular/material/button';
 import { FormBuilder } from '@angular/forms';
@@ -8,15 +8,17 @@ import { UserComponent } from './user/user.component';
 import { NewChannelComponent } from './new-channel/new-channel.component';
 import { ChannelComponent } from './channel/channel.component';
 import { CommonModule } from '@angular/common';
+import { Channel, ChannelService } from '../../services/channel.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-devspace',
   standalone: true,
-  imports: [MatSidenavModule, MatButtonModule, UserComponent, NewChannelComponent, ChannelComponent, CommonModule],
+  imports: [MatSidenavModule, MatButtonModule, UserComponent, ChannelComponent, CommonModule],
   templateUrl: './devspace.component.html',
   styleUrl: './devspace.component.scss'
 })
-export class DevspaceComponent implements AfterViewInit {
+export class DevspaceComponent implements AfterViewInit, OnInit {
 
   private _formBuilder = inject(FormBuilder);
   private cdr = inject(ChangeDetectorRef);
@@ -39,7 +41,7 @@ export class DevspaceComponent implements AfterViewInit {
   isChannelsListVisible: boolean = true;
 
 
-  channels = ALL_CHANNELS;
+  channels$!: Observable<Channel[]>;
   users = ALL_USERS;
 
   selectedUserId = "u1";
@@ -51,7 +53,11 @@ export class DevspaceComponent implements AfterViewInit {
     top: 0,
   });
 
+  constructor(private channelService: ChannelService) {}
 
+  ngOnInit() {
+    this.channels$ = this.channelService.getChannels(); // 🔥 Live-Daten aus Firestore
+  }
 
   ngAfterViewInit() {
     this.cdr.detectChanges(); // Erzwingt eine Aktualisierung nach der Initialisierung

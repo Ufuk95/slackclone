@@ -11,7 +11,8 @@
                 </div>
                 <img class="pointer"
                     [src]="isMessageIconHovered ? '/img/Devspace/edit_square_blue_hover.svg' : '/img/Devspace/edit_square.svg'"
-                    (mouseenter)="isMessageIconHovered = true" (mouseleave)="isMessageIconHovered = false" alt="edit logo">
+                    (mouseenter)="isMessageIconHovered = true" (mouseleave)="isMessageIconHovered = false"
+                    alt="edit logo">
             </div>
 
 
@@ -27,41 +28,44 @@
                     </div>
                     <img class="pointer"
                         [src]="isAddHovered ? '/img/Devspace/add_blue_hover.svg' : '/img/Devspace/add.svg'"
-                        (mouseenter)="isAddHovered = true" (mouseleave)="isAddHovered = false" (click)="onNewChannelClick()">
+                        (mouseenter)="isAddHovered = true" (mouseleave)="isAddHovered = false"
+                        (click)="onNewChannelClick()">
                 </div>
-        
-        
-        
+
+
+
                 <div class="channelsInput" *ngIf="isChannelsListVisible">
-                    @for (channel of channels; track channel.name) {
-                    <app-channel [name]="channel.name" />
-                    }
+                    <ng-container *ngFor="let channel of channels$ | async">
+                        <app-channel [name]="channel.name" />
+                    </ng-container>
                 </div>
-        
+
                 <div class="userChat">
-                    <div class="channelsHeadline" (mouseenter)="isUserHovered = true" (mouseleave)="isUserHovered = false">
+                    <div class="channelsHeadline" (mouseenter)="isUserHovered = true"
+                        (mouseleave)="isUserHovered = false">
                         <div (click)="toggleUsersList()">
                             <img class="arrowDownBlack" alt="arrow down" [src]="getUserImageSource()">
-        
+
                             <div>
                                 <img class="accountCircle" src="/img/Devspace/account_circle.svg" alt="some circles">
                                 <span>Direktnachrichten</span>
                             </div>
                         </div>
                     </div>
-        
+
                     <ul *ngIf="isUsersListVisible">
                         @for (user of users; track user.id) {
-                        <app-user [avatar]="user.avatar" [name]="user.name" [id]="user.id" (select)="onSelectedUser($event)" />
+                        <app-user [avatar]="user.avatar" [name]="user.name" [id]="user.id"
+                            (select)="onSelectedUser($event)" />
                         }
                     </ul>
-        
+
                 </div>
 
             </div>
 
         </div>
-        
+
     </mat-sidenav>
 
 </mat-sidenav-container>
