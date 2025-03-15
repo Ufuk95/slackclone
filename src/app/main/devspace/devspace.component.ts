@@ -2,14 +2,13 @@ import { AfterViewInit, ChangeDetectorRef, Component, EventEmitter, inject, OnIn
 import { MatSidenav, MatSidenavModule } from '@angular/material/sidenav';
 import { MatButtonModule } from '@angular/material/button';
 import { FormBuilder } from '@angular/forms';
-import { ALL_CHANNELS } from '../../shared/ALL_CHANNELS';
-import { ALL_USERS } from '../../shared/ALL_USERS';
 import { UserComponent } from './user/user.component';
-import { NewChannelComponent } from './new-channel/new-channel.component';
 import { ChannelComponent } from './channel/channel.component';
 import { CommonModule } from '@angular/common';
 import { Channel, ChannelService } from '../../services/channel.service';
+import { User, UserService } from '../../services/users.service'
 import { Observable } from 'rxjs';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-devspace',
@@ -42,7 +41,7 @@ export class DevspaceComponent implements AfterViewInit, OnInit {
 
 
   channels$!: Observable<Channel[]>;
-  users = ALL_USERS;
+  users$!: Observable<User[]>;
 
   selectedUserId = "u1";
   selectedChannelName = "Entwicklerteam";
@@ -53,10 +52,11 @@ export class DevspaceComponent implements AfterViewInit, OnInit {
     top: 0,
   });
 
-  constructor(private channelService: ChannelService) {}
+  constructor(private channelService: ChannelService, private userService: UserService) {}
 
   ngOnInit() {
-    this.channels$ = this.channelService.getChannels(); // 🔥 Live-Daten aus Firestore
+    this.channels$ = this.channelService.getChannels(); // Channels aus Firestore
+    this.users$ = this.userService.getUsers(); // 🔥 Benutzer aus Firestore
   }
 
   ngAfterViewInit() {

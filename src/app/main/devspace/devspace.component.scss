@@ -105,6 +105,9 @@
         ul {
             margin-top: 25px;
             padding-inline-start: 30px;
+            list-style-type: none;
+            max-height: 330px; /* Passe die Höhe nach Bedarf an */
+            overflow-y: auto; 
         }
     }
 }

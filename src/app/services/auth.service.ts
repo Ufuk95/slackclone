@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Firestore, collection, addDoc, query, where, getDocs } from '@angular/fire/firestore';
+import { Firestore, collection, addDoc, query, where, getDocs, collectionData } from '@angular/fire/firestore';
 import { Auth, createUserWithEmailAndPassword, sendPasswordResetEmail, signInWithEmailAndPassword, User } from '@angular/fire/auth';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -62,28 +63,24 @@ export class AuthService {
 
   async loginUser(email: string, password: string): Promise<void> {
     try {
-        // 🛠 Email bereinigen
-        email = email.trim().toLowerCase();
+      // 🛠 Email bereinigen
+      email = email.trim().toLowerCase();
 
-        console.log('🔍 Login-Daten nach Bereinigung:', { email, password });
+      console.log('🔍 Login-Daten nach Bereinigung:', { email, password });
 
-        if (!email || !password) {
-            console.error('❌ Fehler: Email oder Passwort fehlt!');
-            alert('Bitte E-Mail und Passwort eingeben.');
-            return;
-        }
+      if (!email || !password) {
+        console.error('❌ Fehler: Email oder Passwort fehlt!');
+        alert('Bitte E-Mail und Passwort eingeben.');
+        return;
+      }
 
-        const userCredential = await signInWithEmailAndPassword(this.auth, email, password);
-        console.log('✅ Anmeldung erfolgreich:', userCredential.user);
+      const userCredential = await signInWithEmailAndPassword(this.auth, email, password);
+      console.log('✅ Anmeldung erfolgreich:', userCredential.user);
     } catch (error) {
-        console.error('❌ Fehler bei der Anmeldung:', error);
-        alert('Anmeldung fehlgeschlagen: ' + error);
-        throw error;
+      console.error('❌ Fehler bei der Anmeldung:', error);
+      alert('Anmeldung fehlgeschlagen: ' + error);
+      throw error;
     }
+  }
 }
 
-
-
-
-
-}

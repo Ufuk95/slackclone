@@ -54,11 +54,12 @@
                     </div>
 
                     <ul *ngIf="isUsersListVisible">
-                        @for (user of users; track user.id) {
-                        <app-user [avatar]="user.avatar" [name]="user.name" [id]="user.id"
-                            (select)="onSelectedUser($event)" />
-                        }
+                        <li *ngFor="let user of users$ | async">
+                            <app-user [name]="user.name" [avatar]="user.avatar" (select)="onSelectedUser(user.id)">
+                            </app-user>
+                        </li>
                     </ul>
+
 
                 </div>
 
