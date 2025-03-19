@@ -1,0 +1,29 @@
+<header>
+    <div class="headerLogo">
+        <img src="/img/main/header/logoName.svg" alt="logo">
+    </div>
+
+    <div class="inputText">
+        <input type="text" placeholder="Devspace durchsuchen">
+        <img src="/img/main/header/icons.svg" alt="search icon">
+
+    </div>
+
+    <div class="accountInfo" (click)="showUserInformation()" (mouseenter)="changeImage(true)" (mouseleave)="changeImage(false)">
+        <span>Name</span>
+        <img src="" alt="avatar">
+        <img class="arrowDown" [src]="arrowImage" alt="arrow down">
+    </div>
+
+    @if (isUserInformationClicked) {
+        <div class="clickToRemove">
+            <div class="userInfo">
+                <span>Profil</span>
+                <button>Log out</button>
+            </div>
+        </div>
+        
+    }
+</header>
+
+

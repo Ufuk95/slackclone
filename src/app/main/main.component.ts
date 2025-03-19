@@ -3,11 +3,12 @@ import { DevspaceComponent } from "./devspace/devspace.component";
 import { ALL_CHANNELS } from '../shared/ALL_CHANNELS';
 import { ALL_USERS } from '../shared/ALL_USERS';
 import { NewChannelComponent } from "./new-channel/new-channel.component";
+import { ChatHeaderComponent } from "./chat-header/chat-header.component";
 
 @Component({
   selector: 'app-main',
   standalone: true,
-  imports: [DevspaceComponent, NewChannelComponent],
+  imports: [DevspaceComponent, NewChannelComponent, ChatHeaderComponent],
   templateUrl: './main.component.html',
   styleUrl: './main.component.scss'
 })
