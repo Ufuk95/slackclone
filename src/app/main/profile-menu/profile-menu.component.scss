@@ -1,0 +1,45 @@
+.clickToRemove {
+    position: absolute;
+    top: 0;
+    background-color: rgba(128, 128, 128, 0.5);
+    max-width: 1920px;
+    width: 100vw;
+    height: 100vh;
+    z-index: 2;
+}
+
+.userInfo {
+    position: absolute;
+    z-index: 3;
+    top: 100px;
+    right: 100px;
+    background-color: white;
+    width: 282px;
+    height: 181px;
+    padding: 30px;
+    border-top-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+    border-bottom-left-radius: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+
+    button {
+        font-size: 24px;
+        width: 222px;
+        height: 53px;
+        padding: 10px 60px;
+        background-color: transparent;
+        border: 1px solid transparent;
+        cursor: pointer;
+
+
+        &:hover {
+            color: rgb(68, 77, 242);
+            background-color: rgba(236, 238, 254, 1);
+            border-radius: 20px;
+        }
+    }
+}

@@ -9,21 +9,11 @@
 
     </div>
 
-    <div class="accountInfo" (click)="showUserInformation()" (mouseenter)="changeImage(true)" (mouseleave)="changeImage(false)">
+    <div class="accountInfo" (click)="toggleProfileMenu()" (mouseenter)="changeImage(true)" (mouseleave)="changeImage(false)">
         <span>Name</span>
         <img src="" alt="avatar">
         <img class="arrowDown" [src]="arrowImage" alt="arrow down">
     </div>
-
-    @if (isUserInformationClicked) {
-        <div class="clickToRemove">
-            <div class="userInfo">
-                <span>Profil</span>
-                <button>Log out</button>
-            </div>
-        </div>
-        
-    }
 </header>
 
 

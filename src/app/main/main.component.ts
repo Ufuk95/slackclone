@@ -1,34 +1,27 @@
 import { Component } from '@angular/core';
 import { DevspaceComponent } from "./devspace/devspace.component";
-import { ALL_CHANNELS } from '../shared/ALL_CHANNELS';
-import { ALL_USERS } from '../shared/ALL_USERS';
 import { NewChannelComponent } from "./new-channel/new-channel.component";
 import { ChatHeaderComponent } from "./chat-header/chat-header.component";
+import { ProfileMenuComponent } from "./profile-menu/profile-menu.component";
 
 @Component({
   selector: 'app-main',
   standalone: true,
-  imports: [DevspaceComponent, NewChannelComponent, ChatHeaderComponent],
+  imports: [DevspaceComponent, NewChannelComponent, ChatHeaderComponent, ProfileMenuComponent],
   templateUrl: './main.component.html',
   styleUrl: './main.component.scss'
 })
 export class MainComponent {
+
   isNewChannelClicked: boolean = false;
-  showUsers: boolean = false;
-  showChannels: boolean = true;
 
-  channels = ALL_CHANNELS;
-  users = ALL_USERS;
+  isProfileMenuVisible = false; // für app-profile-menu
 
-  selectedUserId = "u1";
-  selectedChannelName = "Entwicklerteam";
-
-  get selectedUser() {
-    return this.users.find((user) => user.id === this.selectedUserId)!;
+  toggleProfileMenu() {
+    this.isProfileMenuVisible = !this.isProfileMenuVisible;
   }
-
-  get selectedChannel() {
-    return this.channels.find((channel) => channel.name === this.selectedChannelName)!;
+  closeMenu() {
+    this.isProfileMenuVisible = !this.isProfileMenuVisible;
   }
 
   handleNewChannelClicked(event: boolean) {
@@ -40,15 +33,5 @@ export class MainComponent {
     this.isNewChannelClicked = false;
   }
 
-  handleUserSelected(id: string) {
-    this.selectedUserId = id;
-    this.showChannels = false;
-    this.showUsers = true;
-  }
 
-  hanldeChannelSelected(name: string) {
-    this.selectedChannelName = name;
-    this.showChannels = true;
-    this.showUsers = false;
-  }
 }

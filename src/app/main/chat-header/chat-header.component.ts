@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-chat-header',
@@ -10,7 +10,9 @@ import { Component } from '@angular/core';
 export class ChatHeaderComponent {
 
   arrowImage: string = '/img/main/header/keyboard_arrow_down.svg';
-  isUserInformationClicked: boolean = false;
+
+
+  @Output() profileMenuToggle = new EventEmitter<void>();
 
   changeImage(isHovered: boolean) {
     this.arrowImage = isHovered
@@ -18,7 +20,7 @@ export class ChatHeaderComponent {
       : '/img/main/header/keyboard_arrow_down.svg';
   }
 
-  showUserInformation() {
-    this.isUserInformationClicked = true;
+  toggleProfileMenu() {
+    this.profileMenuToggle.emit();
   }
 }

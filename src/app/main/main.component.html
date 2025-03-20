@@ -1,9 +1,14 @@
-<app-chat-header class="mainHeader" />
+<main>
+    <app-chat-header class="mainHeader" (profileMenuToggle)="toggleProfileMenu()" />
+    @if (isProfileMenuVisible) {
+        <app-profile-menu (closeProfileMenu)="closeMenu()"/>
+    }
+    
 
-<app-devspace (newChannelClicked)="handleNewChannelClicked($event)" (userSelected)="handleUserSelected($event)"
-    (channelSelected)="hanldeChannelSelected($event)" />
+    <app-devspace (newChannelClicked)="handleNewChannelClicked($event)" />
 
 
-@if (isNewChannelClicked) {
-<app-new-channel class="newChannel" (closeChannelEvent)="handleNewChannelClosed()" />
-}
+    @if (isNewChannelClicked) {
+    <app-new-channel class="newChannel" (closeChannelEvent)="handleNewChannelClosed()" />
+    }
+</main>
