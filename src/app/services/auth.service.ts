@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Firestore, collection, addDoc, query, where, getDocs, collectionData } from '@angular/fire/firestore';
 import { Auth, createUserWithEmailAndPassword, sendPasswordResetEmail, signInWithEmailAndPassword, User } from '@angular/fire/auth';
+import { AuthErrorCodes } from 'firebase/auth';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -63,24 +64,31 @@ export class AuthService {
 
   async loginUser(email: string, password: string): Promise<void> {
     try {
-      // 🛠 Email bereinigen
-      email = email.trim().toLowerCase();
+        email = email.trim().toLowerCase();
+        console.log('🔍 Login-Daten nach Bereinigung:', { email, password });
 
-      console.log('🔍 Login-Daten nach Bereinigung:', { email, password });
+        if (!email || !password) {
+            console.error('❌ Fehler: Email oder Passwort fehlt!');
+            throw new Error('Bitte E-Mail und Passwort eingeben.');
+        }
 
-      if (!email || !password) {
-        console.error('❌ Fehler: Email oder Passwort fehlt!');
-        alert('Bitte E-Mail und Passwort eingeben.');
-        return;
-      }
+        const userCredential = await signInWithEmailAndPassword(this.auth, email, password);
+        console.log('✅ Anmeldung erfolgreich:', userCredential.user);
+    } catch (error: any) {
+        console.error('❌ Fehler bei der Anmeldung:', error);
 
-      const userCredential = await signInWithEmailAndPassword(this.auth, email, password);
-      console.log('✅ Anmeldung erfolgreich:', userCredential.user);
-    } catch (error) {
-      console.error('❌ Fehler bei der Anmeldung:', error);
-      alert('Anmeldung fehlgeschlagen: ' + error);
-      throw error;
+        // 🔴 Firebase-Fehlermeldung umwandeln
+        let errorMessage = 'Anmeldung fehlgeschlagen!';
+
+        if (error.code === AuthErrorCodes.INVALID_PASSWORD) {
+            errorMessage = 'Das Passwort ist ungültig.';
+        } else if (error.code === AuthErrorCodes.USER_DELETED) {
+            errorMessage = 'Es gibt kein Konto mit dieser E-Mail.';
+        }
+
+        throw new Error(errorMessage);
     }
-  }
+}
+
 }
 

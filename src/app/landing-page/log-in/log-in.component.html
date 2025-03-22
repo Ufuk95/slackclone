@@ -3,29 +3,58 @@
         <h1>Anmelden</h1>
         <span>Wir empfehlen dir, die E-Mail-Adresse zu nutzen, die du bei der Arbeit verwendest.</span>
 
-        <div class="inputArea">
-            <input type="email" [(ngModel)]="email" placeholder="beispielname@email.com" aria-label="E-Mail-Adresse">
-            <img src="/img/landingPage/mail.svg" alt="mail img">
-        </div>
-        <div class="inputArea">
-            <input type="password" [(ngModel)]="password" placeholder="Passwort" autocomplete="current-password" aria-label="Passwort">
-            <img src="/img/landingPage/lock.svg" alt="lock img">
-        </div>
-        
+        <form #f="ngForm" (ngSubmit)="login(f)">
+            <!-- E-Mail Input -->
+            <div class="testBody">
+                <div class="inputArea">
+                    <input type="email" name="email" [(ngModel)]="email" placeholder="beispielname@email.com"
+                        aria-label="E-Mail-Adresse" pattern="[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}" required
+                        #emailInput="ngModel">
+                    <img src="/img/landingPage/mail.svg" alt="mail img">
+                </div>
+                <small *ngIf="emailInput.invalid && emailInput.touched" class="error">
+                    Bitte eine gültige E-Mail-Adresse eingeben.
+                </small>
+                <small *ngIf="firebaseErrorMessage" class="error">
+                    {{ firebaseErrorMessage }}
+                </small>
+            </div>
 
-        <p [routerLink]="'/resetPassword'">Passwort vergessen?</p>
 
-        <div class="lineWithO">
-            <img src="/img/landingPage/line.svg" alt="line">
-            <span>ODER</span>
-            <img src="/img/landingPage/line.svg" alt="line">
-        </div>
+            <!-- Passwort Input -->
+            <div class="testBody">
+                <div class="inputArea">
+                    <input type="password" name="password" [(ngModel)]="password" placeholder="Passwort"
+                        autocomplete="current-password" aria-label="Passwort" required minlength="6"
+                        #passwordInput="ngModel">
+                    <img src="/img/landingPage/lock.svg" alt="lock img">
+                </div>
+                <small *ngIf="passwordInput.invalid && passwordInput.touched" class="error">
+                    Passwort muss mindestens 6 Zeichen lang sein.
+                </small>
+                <small *ngIf="firebaseErrorMessage" class="error">
+                    {{ firebaseErrorMessage }}
+                </small>
+            </div>
 
-        <button><img src="/img/landingPage/Google.svg" alt="google logo"> Anmelden mit Google</button>
 
-        <div class="buttonContainer">
-            <button class="signIn" (click)="login()">Anmelden</button>
-            <button class="guestLogin">Gäste-Login</button>
-        </div>
+            <div class="passwortForget">
+                <p [routerLink]="'/resetPassword'">Passwort vergessen?</p>
+            </div>
+            
+
+            <div class="lineWithO">
+                <img src="/img/landingPage/line.svg" alt="line">
+                <span>ODER</span>
+                <img src="/img/landingPage/line.svg" alt="line">
+            </div>
+
+            <button type="button"><img src="/img/landingPage/Google.svg" alt="google logo"> Anmelden mit Google</button>
+
+            <div class="buttonContainer">
+                <button class="signIn" type="submit">Anmelden</button>
+                <button class="guestLogin" routerLink="/main">Gäste-Login</button>
+            </div>
+        </form>
     </main>
 </div>
