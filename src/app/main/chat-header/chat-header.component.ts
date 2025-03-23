@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-chat-header',
@@ -13,6 +13,9 @@ export class ChatHeaderComponent {
 
 
   @Output() profileMenuToggle = new EventEmitter<void>();
+
+  @Input() userName: string = 'Gast';
+  @Input() userAvatar: string = '/img/landingPage/1.avatare/profile.svg';
 
   changeImage(isHovered: boolean) {
     this.arrowImage = isHovered

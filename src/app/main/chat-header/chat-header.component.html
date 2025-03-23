@@ -10,8 +10,8 @@
     </div>
 
     <div class="accountInfo" (click)="toggleProfileMenu()" (mouseenter)="changeImage(true)" (mouseleave)="changeImage(false)">
-        <span>Name</span>
-        <img src="" alt="avatar">
+        <span>{{ userName }}</span>
+        <img class="profilePic" src="{{ userAvatar }}" alt="avatar">
         <img class="arrowDown" [src]="arrowImage" alt="arrow down">
     </div>
 </header>

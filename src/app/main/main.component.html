@@ -1,9 +1,10 @@
 <main>
-    <app-chat-header class="mainHeader" (profileMenuToggle)="toggleProfileMenu()" />
+    <app-chat-header class="mainHeader" (profileMenuToggle)="toggleProfileMenu()" [userName]="userName"
+        [userAvatar]="userAvatar" />
     @if (isProfileMenuVisible) {
-        <app-profile-menu (closeProfileMenu)="closeMenu()"/>
+    <app-profile-menu (closeProfileMenu)="closeMenu()" />
     }
-    
+
 
     <app-devspace (newChannelClicked)="handleNewChannelClicked($event)" />
 

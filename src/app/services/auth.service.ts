@@ -3,12 +3,16 @@ import { Firestore, collection, addDoc, query, where, getDocs, collectionData } 
 import { Auth, createUserWithEmailAndPassword, sendPasswordResetEmail, signInWithEmailAndPassword, User } from '@angular/fire/auth';
 import { AuthErrorCodes } from 'firebase/auth';
 import { Observable } from 'rxjs';
+import { UserService } from './users.service';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  constructor(private firestore: Firestore, private auth: Auth) { }
+
+
+  constructor(private firestore: Firestore, private auth: Auth, private userService: UserService) { }
 
   async registerUser(name: string, email: string, password: string, avatar: string) {
     try {
@@ -64,29 +68,24 @@ export class AuthService {
 
   async loginUser(email: string, password: string): Promise<void> {
     try {
-        email = email.trim().toLowerCase();
-        console.log('🔍 Login-Daten nach Bereinigung:', { email, password });
+      email = email.trim().toLowerCase();
+      const userCredential = await signInWithEmailAndPassword(this.auth, email, password);
+      const user = userCredential.user;
 
-        if (!email || !password) {
-            console.error('❌ Fehler: Email oder Passwort fehlt!');
-            throw new Error('Bitte E-Mail und Passwort eingeben.');
-        }
+      // 🔍 Benutzerinformationen aus Firestore abrufen
+      const userRef = collection(this.firestore, 'LogIn');
+      const q = query(userRef, where('uid', '==', user.uid));
+      const querySnapshot = await getDocs(q);
 
-        const userCredential = await signInWithEmailAndPassword(this.auth, email, password);
-        console.log('✅ Anmeldung erfolgreich:', userCredential.user);
-    } catch (error: any) {
-        console.error('❌ Fehler bei der Anmeldung:', error);
-
-        // 🔴 Firebase-Fehlermeldung umwandeln
-        let errorMessage = 'Anmeldung fehlgeschlagen!';
-
-        if (error.code === AuthErrorCodes.INVALID_PASSWORD) {
-            errorMessage = 'Das Passwort ist ungültig.';
-        } else if (error.code === AuthErrorCodes.USER_DELETED) {
-            errorMessage = 'Es gibt kein Konto mit dieser E-Mail.';
-        }
-
-        throw new Error(errorMessage);
+      if (!querySnapshot.empty) {
+        const userData = querySnapshot.docs[0].data();
+        this.userService.setUserData(userData['name'], userData['avatar']); // ⬅️ Benutzer speichern
+      } else {
+        throw new Error('Benutzerinformationen nicht gefunden!');
+      }
+    } catch (error) {
+      console.error('❌ Fehler bei der Anmeldung:', error);
+      throw new Error('Anmeldung fehlgeschlagen!');
     }
 }
 
