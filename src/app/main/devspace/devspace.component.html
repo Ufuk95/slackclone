@@ -1,4 +1,4 @@
-<mat-sidenav-container class="example-container">
+<main class="example-container">
     <mat-sidenav #sidenav mode="side" opened class="example-sidenav" [fixedInViewport]="options.value.fixed"
         [fixedTopGap]="options.value.top" [fixedBottomGap]="options.value.bottom">
 
@@ -55,7 +55,7 @@
 
                     <ul *ngIf="isUsersListVisible">
                         <li *ngFor="let user of users$ | async">
-                            <app-user [name]="user.name" [avatar]="user.avatar" (select)="onSelectedUser(user.id)">
+                            <app-user [name]="user.name" [avatar]="user.avatar">
                             </app-user>
                         </li>
                     </ul>
@@ -69,7 +69,7 @@
 
     </mat-sidenav>
 
-</mat-sidenav-container>
+</main>
 
 <div class="closeImg">
     <img [src]="sidenavIcon" (click)="sidenav.toggle()" (mouseenter)="hover = true" (mouseleave)="hover = false"

@@ -19,5 +19,6 @@ export class UserComponent {
 
   onSelectUser() {
     this.select.emit(); // 🔥 Hier wird das Event ausgelöst
+    console.log("der user " + this.name + " wurde angeklickt")
   }
 }

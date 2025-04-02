@@ -5,8 +5,12 @@
     <app-profile-menu (closeProfileMenu)="closeMenu()" />
     }
 
+    <div class="mainChatArea">
+        <app-devspace (newChannelClicked)="handleNewChannelClicked($event)" />
 
-    <app-devspace (newChannelClicked)="handleNewChannelClicked($event)" />
+        <app-chat class="chat" />
+    </div>
+    
 
 
     @if (isNewChannelClicked) {

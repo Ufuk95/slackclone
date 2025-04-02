@@ -31,7 +31,7 @@ export class DevspaceComponent implements AfterViewInit, OnInit {
   isUserHovered: boolean = false;
 
   @Output() newChannelClicked: EventEmitter<boolean> = new EventEmitter();
-  @Output() userSelected: EventEmitter<string> = new EventEmitter<string>();
+  // @Output() userSelected: EventEmitter<string> = new EventEmitter<string>();
   @Output() channelSelected: EventEmitter<string> = new EventEmitter<string>();
 
 
@@ -99,11 +99,6 @@ export class DevspaceComponent implements AfterViewInit, OnInit {
     } else {
       return '/img/Devspace/arrow_drop_down.svg';
     }
-  }
-
-  onSelectedUser(id: string) {
-    console.log('Ausgewählter Benutzer:', id);
-    this.userSelected.emit(id);
   }
 
   onSelectedChannel(name: string) {

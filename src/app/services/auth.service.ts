@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Firestore, collection, addDoc, query, where, getDocs, collectionData } from '@angular/fire/firestore';
 import { Auth, createUserWithEmailAndPassword, sendPasswordResetEmail, signInWithEmailAndPassword, User } from '@angular/fire/auth';
-import { AuthErrorCodes } from 'firebase/auth';
 import { Observable } from 'rxjs';
 import { UserService } from './users.service';
 

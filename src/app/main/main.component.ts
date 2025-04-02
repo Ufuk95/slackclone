@@ -4,11 +4,12 @@ import { NewChannelComponent } from "./new-channel/new-channel.component";
 import { ChatHeaderComponent } from "./chat-header/chat-header.component";
 import { ProfileMenuComponent } from "./profile-menu/profile-menu.component";
 import { UserService } from '../services/users.service';
+import { ChatComponent } from "./chat/chat.component";
 
 @Component({
   selector: 'app-main',
   standalone: true,
-  imports: [DevspaceComponent, NewChannelComponent, ChatHeaderComponent, ProfileMenuComponent],
+  imports: [DevspaceComponent, NewChannelComponent, ChatHeaderComponent, ProfileMenuComponent, ChatComponent],
   templateUrl: './main.component.html',
   styleUrl: './main.component.scss'
 })

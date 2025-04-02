@@ -1,23 +1,15 @@
 import {
   AuthInstances
-} from "./chunk-VIXJT36Q.js";
-import "./chunk-LU5SGSTP.js";
-import {
-  FirebaseApp,
-  FirebaseApps,
-  VERSION,
-  ɵAngularFireSchedulers,
-  ɵAppCheckInstances,
-  ɵgetAllInstancesOf,
-  ɵgetDefaultInstanceOf,
-  ɵzoneWrap
-} from "./chunk-PO4KBICO.js";
+} from "./chunk-F2IDUZLJ.js";
 import {
   Component,
+  FirebaseApp,
+  FirebaseApps,
   FirebaseError,
   LogLevel,
   Logger,
   SDK_VERSION,
+  VERSION,
   _getProvider,
   _registerComponent,
   _removeServiceInstance,
@@ -29,8 +21,13 @@ import {
   getUA,
   isIndexedDBAvailable,
   isSafari,
-  registerVersion
-} from "./chunk-24NTIFM2.js";
+  registerVersion,
+  ɵAngularFireSchedulers,
+  ɵAppCheckInstances,
+  ɵgetAllInstancesOf,
+  ɵgetDefaultInstanceOf,
+  ɵzoneWrap
+} from "./chunk-552GSZQK.js";
 import {
   InjectionToken,
   Injector,
@@ -38,6 +35,9 @@ import {
   NgZone,
   Observable,
   Optional,
+  __async,
+  __export,
+  __superGet,
   concatMap,
   distinct,
   distinctUntilChanged,
@@ -53,12 +53,7 @@ import {
   timer,
   ɵɵdefineInjector,
   ɵɵdefineNgModule
-} from "./chunk-SQENZIVA.js";
-import {
-  __async,
-  __export,
-  __superGet
-} from "./chunk-FVETPLIC.js";
+} from "./chunk-ZS76Q7P6.js";
 
 // node_modules/firebase/firestore/dist/esm/index.esm.js
 var index_esm_exports = {};
