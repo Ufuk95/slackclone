@@ -26,9 +26,29 @@ header {
 
 
     .inputArea {
+        position: relative;
         border: 1px solid grey;
         border-radius: 20px;
         padding: 20px;
         height: 145px;
+        box-sizing: border-box;
+
+        .emotes {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: absolute;
+            bottom: 20px;
+            box-sizing: border-box;
+            padding-right: 30px;
+
+            div {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 15px;
+            }
+        }
     }
 }
