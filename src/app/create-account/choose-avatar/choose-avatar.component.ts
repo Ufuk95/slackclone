@@ -5,11 +5,10 @@ import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router'
 
 @Component({
-  selector: 'app-choose-avatar',
-  standalone: true,
-  imports: [RouterModule, CommonModule],
-  templateUrl: './choose-avatar.component.html',
-  styleUrl: './choose-avatar.component.scss'
+    selector: 'app-choose-avatar',
+    imports: [RouterModule, CommonModule],
+    templateUrl: './choose-avatar.component.html',
+    styleUrl: './choose-avatar.component.scss'
 })
 export class ChooseAvatarComponent {
   isArrowbackHovered: boolean = false;

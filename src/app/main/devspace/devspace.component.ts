@@ -11,11 +11,10 @@ import { Observable } from 'rxjs';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
-  selector: 'app-devspace',
-  standalone: true,
-  imports: [MatSidenavModule, MatButtonModule, UserComponent, ChannelComponent, CommonModule],
-  templateUrl: './devspace.component.html',
-  styleUrl: './devspace.component.scss'
+    selector: 'app-devspace',
+    imports: [MatSidenavModule, MatButtonModule, UserComponent, ChannelComponent, CommonModule],
+    templateUrl: './devspace.component.html',
+    styleUrl: './devspace.component.scss'
 })
 export class DevspaceComponent implements AfterViewInit, OnInit {
 

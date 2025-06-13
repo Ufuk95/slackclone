@@ -1,11 +1,10 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
-  selector: 'app-chat-header',
-  standalone: true,
-  imports: [],
-  templateUrl: './chat-header.component.html',
-  styleUrl: './chat-header.component.scss'
+    selector: 'app-chat-header',
+    imports: [],
+    templateUrl: './chat-header.component.html',
+    styleUrl: './chat-header.component.scss'
 })
 export class ChatHeaderComponent {
 

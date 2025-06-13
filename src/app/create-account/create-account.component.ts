@@ -7,11 +7,10 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-create-account',
-  standalone: true,
-  imports: [FooterComponent, HeaderLogoComponent, RouterModule, ChooseAvatarComponent, FormsModule, CommonModule],
-  templateUrl: './create-account.component.html',
-  styleUrl: './create-account.component.scss'
+    selector: 'app-create-account',
+    imports: [FooterComponent, HeaderLogoComponent, RouterModule, ChooseAvatarComponent, FormsModule, CommonModule],
+    templateUrl: './create-account.component.html',
+    styleUrl: './create-account.component.scss'
 })
 export class CreateAccountComponent {
 

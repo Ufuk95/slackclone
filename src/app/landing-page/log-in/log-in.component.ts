@@ -10,7 +10,6 @@ import { AuthService } from '../../services/auth.service';
 
 @Component({
     selector: 'app-log-in',
-    standalone: true,
     imports: [RouterModule, FormsModule, CommonModule],
     templateUrl: './log-in.component.html',
     styleUrl: './log-in.component.scss'

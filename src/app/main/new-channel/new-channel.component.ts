@@ -6,11 +6,10 @@ import { ALL_CHANNELS } from '../../shared/ALL_CHANNELS';
 import { ALL_USERS } from '../../shared/ALL_USERS';
 
 @Component({
-  selector: 'app-new-channel',
-  standalone: true,
-  imports: [CommonModule, UserComponent, FormsModule],
-  templateUrl: './new-channel.component.html',
-  styleUrl: './new-channel.component.scss'
+    selector: 'app-new-channel',
+    imports: [CommonModule, UserComponent, FormsModule],
+    templateUrl: './new-channel.component.html',
+    styleUrl: './new-channel.component.scss'
 })
 export class NewChannelComponent implements OnInit, OnDestroy {
 

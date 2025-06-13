@@ -9,11 +9,10 @@ import { IntroAnimationComponent } from "../intro-animation/intro-animation.comp
 // import { GoogleAuthProvider, signInWithRedirect, Auth } from '@angular/fire/auth';
 
 @Component({
-  selector: 'app-landing-page',
-  standalone: true,
-  imports: [HeaderComponent, LogInComponent, FooterComponent, CommonModule],
-  templateUrl: './landing-page.component.html',
-  styleUrl: './landing-page.component.scss'
+    selector: 'app-landing-page',
+    imports: [HeaderComponent, LogInComponent, FooterComponent, CommonModule],
+    templateUrl: './landing-page.component.html',
+    styleUrl: './landing-page.component.scss'
 })
 export class LandingPageComponent {
 

@@ -7,11 +7,10 @@ import { RouterModule } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 
 @Component({
-  selector: 'app-reset-password',
-  standalone: true,
-  imports: [HeaderLogoComponent, FooterComponent, FormsModule, CommonModule, RouterModule],
-  templateUrl: './reset-password.component.html',
-  styleUrl: './reset-password.component.scss'
+    selector: 'app-reset-password',
+    imports: [HeaderLogoComponent, FooterComponent, FormsModule, CommonModule, RouterModule],
+    templateUrl: './reset-password.component.html',
+    styleUrl: './reset-password.component.scss'
 })
 export class ResetPasswordComponent {
 

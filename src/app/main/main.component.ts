@@ -7,11 +7,10 @@ import { UserService } from '../services/users.service';
 import { ChatComponent } from "./chat/chat.component";
 
 @Component({
-  selector: 'app-main',
-  standalone: true,
-  imports: [DevspaceComponent, NewChannelComponent, ChatHeaderComponent, ProfileMenuComponent, ChatComponent],
-  templateUrl: './main.component.html',
-  styleUrl: './main.component.scss'
+    selector: 'app-main',
+    imports: [DevspaceComponent, NewChannelComponent, ChatHeaderComponent, ProfileMenuComponent, ChatComponent],
+    templateUrl: './main.component.html',
+    styleUrl: './main.component.scss'
 })
 export class MainComponent {
 
